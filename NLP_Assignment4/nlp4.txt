@@ -1,166 +1,54 @@
-Transformer Encoder Model from Scratch
+# Named Entity Recognition (NER) System
 
-## Overview
+## Project Description
+This project implements a **Named Entity Recognition (NER)** system designed to identify and classify named entities in real-world text such as news articles or social media content. The system performs **token-level sequence labeling** using a supervised learning approach and follows the standard **BIO (Begin–Inside–Outside)** tagging scheme.
 
-This project implements a **Transformer Encoder model** for processing sequential data using **self-attention mechanisms**. The Transformer architecture eliminates recurrence and convolution, enabling parallel sequence processing and effective modeling of long-range dependencies.
-
-This model can be used as a foundation for tasks such as:
-
-* Machine Translation
-* Text Generation
-* Language Modeling
-* General Sequence Modeling
-
-The model accepts a sequence of tokens, applies attention-based transformations, and produces predictions for each token in the sequence.
+The model is implemented using **PyTorch** and evaluates its performance using widely accepted classification metrics including **Accuracy, Precision, Recall, and F1-score**.
 
 ---
 
-## Key Concepts Behind Transformers
+## Approach
+The NER task is formulated as a **sequence labeling problem**, where each token in a sentence is assigned an entity tag. The workflow consists of the following steps:
 
-Traditional sequence models such as RNNs and LSTMs process data sequentially, which limits parallelism and makes learning long-term dependencies difficult. Transformers overcome these limitations by using **self-attention**, allowing each token to directly interact with every other token in the sequence.
+1. **Text Representation**  
+   Input sentences are tokenized and converted into numerical representations using a vocabulary index.
 
----
+2. **Model Architecture**  
+   - An embedding layer converts token indices into dense vectors.  
+   - A bidirectional Long Short-Term Memory (BiLSTM) network captures both past and future contextual information for each token.  
+   - A fully connected layer maps contextual representations to entity tag probabilities.
 
-## Model Components
+3. **Training**  
+   The model is trained using **cross-entropy loss**, optimized with the Adam optimizer. Training is performed at the token level across all sentences.
 
----
+4. **Evaluation**  
+   Model predictions are evaluated against ground truth labels using:
+   - Accuracy  
+   - Precision  
+   - Recall  
+   - F1-score  
 
-## 1. Positional Encoding
-
-### Purpose
-
-Transformers do not inherently capture the order of tokens in a sequence. Since word order is critical in language understanding, positional information must be explicitly added.
-
-### Implementation Details
-
-* Positional encodings are generated using sine and cosine functions at different frequencies.
-* These encodings are added to token embeddings before being passed into the encoder layers.
-* This approach enables the model to generalize to sequences longer than those seen during training.
-
-### Effect
-
-The model gains awareness of token positions while maintaining parallel computation.
+These metrics provide a comprehensive assessment of entity extraction performance.
 
 ---
 
-## 2. Multi-Head Self-Attention
-
-### Purpose
-
-Self-attention allows each token to evaluate the relevance of all other tokens in the sequence, enabling the model to capture contextual relationships.
-
-### Mechanism
-
-1. The input embeddings are linearly projected into:
-
-   * Query (Q)
-   * Key (K)
-   * Value (V)
-
-2. Attention scores are computed as:
-
-   ```
-   scores = (Q × Kᵀ) / √d_k
-   ```
-
-3. Scores are normalized using the softmax function.
-
-4. The normalized weights are applied to the Value vectors to generate contextual representations.
-
-### Multi-Head Attention
-
-* Multiple attention heads are used in parallel.
-* Each head learns different relationships and representations.
-* Outputs from all heads are concatenated and projected.
+## Key Features
+- Token-level Named Entity Recognition  
+- BIO tagging scheme  
+- BiLSTM-based sequence model  
+- Standard evaluation metrics for NER  
+- Suitable for academic and experimental use
 
 ---
 
-## 3. Feed-Forward Network (FFN)
-
-### Purpose
-
-The feed-forward network introduces non-linearity and enables the model to learn complex transformations independently for each token.
-
-### Structure
-
-* A position-wise two-layer fully connected network:
-
-  ```
-  Linear → ReLU → Linear
-  ```
-* Applied identically to each token in the sequence.
+## Use Cases
+- Information extraction from news articles  
+- Entity identification in social media text  
+- Academic demonstrations of sequence labeling models  
+- Baseline NER system for NLP research
 
 ---
 
-## 4. Transformer Encoder Layer
-
-Each encoder layer consists of:
-
-1. Multi-Head Self-Attention
-2. Residual Connection and Layer Normalization
-3. Feed-Forward Network
-4. Residual Connection and Layer Normalization
-
-### Key Design Choices
-
-* **Residual Connections** improve gradient flow and stabilize training.
-* **Layer Normalization** ensures numerical stability.
-* **Dropout** is applied for regularization.
-
-Multiple encoder layers are stacked to form a deep model.
-
----
-
-## 5. Transformer Model Architecture
-
-The complete Transformer model includes:
-
-1. **Embedding Layer**
-
-   * Converts token indices into dense vector representations.
-
-2. **Positional Encoding**
-
-   * Adds sequence order information.
-
-3. **Stacked Encoder Layers**
-
-   * Performs contextual feature extraction.
-
-4. **Final Fully Connected Layer**
-
-   * Projects outputs to vocabulary size for prediction.
-
----
-
-## Model Execution
-
-### Process Flow
-
-1. A sequence of token indices is provided as input.
-2. Tokens are embedded and combined with positional encodings.
-3. The sequence passes through multiple encoder layers.
-4. The final layer produces output logits for each token.
-
-### Output Shape
-
-```
-(batch_size, sequence_length, vocab_size)
-```
-
-Each token position receives a probability distribution over the vocabulary.
-
----
-
-## Summary
-
-This project implements a complete Transformer Encoder architecture, including:
-
-* Positional Encoding for sequence order
-* Multi-Head Self-Attention for contextual understanding
-* Feed-Forward Networks for feature transformation
-* Residual Connections and Layer Normalization for stable training
-* Stacked Encoder Layers for deep representation learning
-
-This implementation serves as a strong foundation for advanced Transformer-based models and can be extended with decoder layers for sequence-to-sequence tasks.
+## Notes
+This implementation is intended as a **clear and extensible baseline**. It can be enhanced further by incorporating advanced architectures such as Transformers, Conditional Random Fields (CRF), or by training on large-scale annotated datasets.
 
