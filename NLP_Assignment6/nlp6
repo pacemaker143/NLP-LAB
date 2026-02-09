@@ -1,1 +1,54 @@
+# Text Representation Techniques: BoW, TF-IDF, and Word2Vec
+
+## Project Description
+This project demonstrates fundamental **text representation techniques** used in Natural Language Processing (NLP). The notebook implements **Bag-of-Words (BoW)** with raw frequency and normalized frequency, **TF-IDF**, and **Word2Vec embeddings** to transform textual data into numerical representations suitable for machine learning models.
+
+The implementation is intended for academic use and provides a clear comparison between traditional sparse representations and dense vector embeddings.
+
+---
+
+## Techniques Implemented
+
+### Bag-of-Words (BoW)
+The Bag-of-Words model represents text by counting the occurrence of each word in a document.
+- **Count Occurrence**: Raw frequency of terms in each document.
+- **Normalized Count Occurrence**: Frequencies normalized using L1 normalization to represent relative importance within a document.
+
+### TF-IDF (Term Frequency–Inverse Document Frequency)
+TF-IDF extends Bag-of-Words by reducing the influence of commonly occurring words while emphasizing terms that are more informative across documents. This approach captures both local and global word importance.
+
+### Word2Vec Embeddings
+Word2Vec is a neural embedding technique that generates **dense vector representations** for words based on their contextual usage. Unlike BoW and TF-IDF, Word2Vec captures semantic relationships between words in continuous vector space.
+
+---
+
+## Workflow Summary
+1. Text data is collected and preprocessed.
+2. Bag-of-Words representations are generated using count and normalized frequencies.
+3. TF-IDF vectors are computed for the same dataset.
+4. Word2Vec is trained on tokenized text to obtain word embeddings.
+5. Sample vectors are displayed for comparison.
+
+---
+
+## Key Features
+- Implementation of classical and modern text representation methods
+- Comparison of sparse and dense representations
+- Clear, modular, and reproducible code
+- Suitable for NLP labs, assignments, and experimentation
+
+---
+
+## Applications
+- Text classification
+- Document similarity
+- Information retrieval
+- NLP feature engineering
+- Educational demonstrations of NLP concepts
+
+---
+
+## Notes
+This implementation serves as a baseline for understanding text representation techniques. It can be extended to larger datasets or integrated with downstream machine learning models for classification, clustering, or semantic analysis.
+
 
