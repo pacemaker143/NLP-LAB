@@ -1,1 +1,59 @@
+# Text Preprocessing and TF-IDF Feature Representation
+
+## Overview
+This project implements a complete **text preprocessing and feature extraction pipeline** used in Natural Language Processing (NLP). The goal is to convert raw textual data into structured numerical representations suitable for machine learning and information retrieval tasks.
+
+The workflow includes **text cleaning**, **lemmatization**, **stop-word removal**, **label encoding**, **TF-IDF vectorization**, and **saving processed outputs** for reuse.
+
+---
+
+## Processing Steps
+
+### Text Cleaning
+Raw text is normalized by converting all characters to lowercase, removing punctuation and non-alphabetic characters, and eliminating extra whitespace. This step reduces noise and ensures consistency across the dataset.
+
+---
+
+### Lemmatization
+Lemmatization is applied to reduce words to their base or dictionary form while preserving their semantic meaning. This helps in reducing vocabulary size and improving the quality of extracted features.
+
+---
+
+### Stop-Word Removal
+Commonly occurring words that carry little semantic value (such as *is, the, and, in*) are removed using a predefined stop-word list. This step improves feature relevance by focusing on informative terms.
+
+---
+
+### Label Encoding
+Categorical class labels associated with text samples are converted into numerical form using label encoding. This transformation is necessary for compatibility with machine learning algorithms.
+
+---
+
+### TF-IDF Feature Representation
+The processed text is transformed into numerical vectors using **Term Frequency–Inverse Document Frequency (TF-IDF)**. TF-IDF assigns higher importance to words that are frequent in a document but rare across the corpus, resulting in more discriminative features.
+
+---
+
+## Output Artifacts
+The following outputs are generated and saved:
+- Cleaned and processed text dataset (CSV format)
+- TF-IDF feature matrix
+- Trained TF-IDF vectorizer
+- Label encoder
+
+These artifacts enable reproducibility and can be reused directly for model training or evaluation.
+
+---
+
+## Applications
+- Text classification
+- Sentiment analysis
+- Document clustering
+- Information retrieval
+- NLP feature engineering pipelines
+
+---
+
+## Notes
+This implementation provides a **standard and extensible baseline** for text preprocessing. It can be scaled to larger datasets and integrated with downstream machine learning or deep learning models as required.
 
